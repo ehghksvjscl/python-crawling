@@ -52,6 +52,7 @@ def getDrinkInfo(id):
     sodium = soup.find("li", {"class": "sodium"}).find("dd").text
     sugars = soup.find("li", {"class": "sugars"}).find("dd").text
     caffeine = soup.find("li", {"class": "caffeine"}).find("dd").text
+    allaegy = soup.find("div", {"class": "product_factor"}).find("p").text
 
     return {
         "drink_name": drink_name,
@@ -65,12 +66,13 @@ def getDrinkInfo(id):
         "sodium": sodium,
         "sugars": sugars,
         "caffeine": caffeine,
+        "allaegy": allaegy,
     }
 
 
 # csv로 변환
 def csv_save(star_menu):
-    f = open("star.csv", "w", encoding="utf-8", newline="")
+    f = open("star2.csv", "w", encoding="utf-8", newline="")
     wr = csv.writer(f)
     wr.writerow(
         [
@@ -85,6 +87,7 @@ def csv_save(star_menu):
             "sodium",
             "sugars",
             "caffeine",
+            "allaegy",
         ]
     )
     for Info in star_menu:
@@ -101,6 +104,7 @@ def csv_save(star_menu):
                 Info["sodium"],
                 Info["sugars"],
                 Info["caffeine"],
+                Info["allaegy"],
             ]
         )
 
