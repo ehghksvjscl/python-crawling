@@ -17,12 +17,12 @@ class Category(models.Model):
 
 
 class Nutrition(models.Model):
-    one_serving_kcal = models.DecimalField(max_digits=10, decimal_places=2)
-    sodium_mg = models.DecimalField(max_digits=10, decimal_places=2)
-    saturated_fat_g = models.DecimalField(max_digits=10, decimal_places=2)
-    sugars_g = models.DecimalField(max_digits=10, decimal_places=2)
-    protein_g = models.DecimalField(max_digits=10, decimal_places=2)
-    caffeine_mg = models.DecimalField(max_digits=10, decimal_places=2)
+    one_serving_kcal = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    sodium_mg = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    saturated_fat_g = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    sugars_g = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    protein_g = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    caffeine_mg = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     class Meta:
         db_table = "nutrition"
@@ -30,9 +30,8 @@ class Nutrition(models.Model):
 
 class Drink(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    nutrition = models.ForeignKey(Nutrition, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    en_name = models.CharField(max_length=100)
+    en_name = models.CharField(max_length=100, null=True)
 
     class Meta:
         db_table = "drink"

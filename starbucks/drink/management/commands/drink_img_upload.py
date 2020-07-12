@@ -14,9 +14,8 @@ class Command(BaseCommand):
             next(data_reader, None)
 
             for row in data_reader:
-                print(row[1], row[2])
-                category = models.Category.objects.get(id=row[0])
-                models.Drink(category=category, name=row[2], en_name=row[3],).save()
+                drink = models.Drink.objects.get(id=row[1])
+                models.Image(img_url=[row[5]], drink=drink,).save()
 
 
 # alter table menu convert to character set utf8;          테이블 encoding 변경 ..
